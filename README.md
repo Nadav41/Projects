@@ -1,6 +1,6 @@
 #  Nadav's Projects Repository
 
-This repository contains all projects developed by **Nadav** since the beginning of his **B.Sc. in Data Science & Engineering**.
+This repository contains all projects developed by Nadav since the beginning of his **B.Sc. in Data Science & Engineering**.
 
 ##  Projects
 - **Chatter** – AI-powered WhatsApp chat analyzer.
