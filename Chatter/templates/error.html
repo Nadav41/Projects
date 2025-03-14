@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>Error</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/Chatter background.jpg'); /* Replace with your image path */
+            background-size: cover; /* Cover the entire screen */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* No repeating */
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        @media screen and (max-width: 998px) {
+            body {
+                background-image: url('static/Chatter Mobile Background.png');
+            }
+        }
+
+        /* Card Container */
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            top: -60mm;
+            font-size: 22px;
+
+            display: flex; /* Enables flexbox */
+            flex-direction: column; /* Stack items vertically */
+            justify-content: flex-start; /* Align content at the top */
+            padding-top: 20px; /* Add space at the top */
+            min-height: 200px; /* Ensures the box is big enough */
+            }
+
+        /* Error Message Styling */
+        .error-message {
+            color: #d32f2f; /* Dark Red */
+            font-size: 35px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            background-color: #d32f2f; /* Dark Red */
+            color: white;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .back-button:hover {
+            background-color: #b71c1c; /* Darker Red */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="error-message">Error</h2>
+        <p>{{ message }}</p>
+        <a href="/menu" class="back-button">← Back</a>
+    </div>
+</body>
+</html>

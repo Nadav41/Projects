@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="UTF-8">
+    <title>Frequent Time Windows</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/Chatter background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            top: 25mm;
+        }
+
+         h1 {
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: 42px;
+            font-weight: bold;
+            color: #1565c0;
+        }
+        h2 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #222222; /* Dark Gray */
+        }
+
+        h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #black;
+        }
+
+        h3.sec {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #222222; /* Dark Gray */
+        }
+
+        .top5-container {
+            background: #bbdefb;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 22px;
+            text-align: left;
+            color: #0d47a1;
+            font-weight: bold;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+            margin-bottom: 25px;
+        }
+
+        .top5-item {
+            color: #222222;
+            padding: 10px;
+            border-bottom: 1px solid #90caf9;
+        }
+
+        .top5-item:last-child {
+            border-bottom: none;
+        }
+
+        .back-button {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background-color: #1e88e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            width: 120px;
+            font-weight: bold;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back-button:hover {
+            background-color: #1565c0;
+        }
+
+        @media screen and (max-width: 998px) {
+                    body {
+                background-image: url('/static/Chatter Mobile Background.png'); /* ✅ Ensure correct path */
+                background-size: cover;  /* ✅ Ensures full coverage */
+                background-position: top center; /* ✅ Keeps it properly aligned */
+                background-repeat: no-repeat;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 50px; /* ✅ Pushes content down */
+            }
+
+            .container {
+                max-width: 90%;  /* ✅ Makes sure container adapts to mobile */
+                margin-top: 80px; /* ✅ Moves content lower */
+            }
+            h1 {
+                font-size: 28px;
+
+            }
+            h3.sec {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #222222; /* Dark Gray */
+        }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Is He Funny?</h1>
+    <h2>{{name}}</h2>
+
+    <div class="top5-container">
+
+            <h3 class='sec'>{{result}}<br></h3>
+        </div>
+
+    <a class="back-button" onclick="window.location.href='/menu'">Back</a>
+</div>
+
+</body>
+</html>

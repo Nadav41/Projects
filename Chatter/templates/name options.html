@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>Chatter - Options</title>
+    <style>
+        /* Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/Chatter background.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        @media screen and (max-width: 998px) {
+            body {
+                background-image: url('static/Chatter Mobile Background.png');
+            }
+        }
+
+        /* Container */
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Title Styling */
+        h2 {
+            margin-bottom: 20px;
+            font-size: 35px;
+            font-weight: bold;
+            color: #1565c0; /* Medium Blue */
+        }
+
+        /* Scrollable Options Box */
+        .options-container {
+            background: #bbdefb; /* Light Blue */
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 30px;
+            text-align: left;
+            color: #0d47a1; /* Dark Blue */
+            font-weight: bold;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+            margin-bottom: 25px;
+            max-height: 250px; /* Set a fixed height */
+            overflow-y: auto; /* Enable scrolling */
+        }
+
+        /* Option Items */
+        .option-item {
+            padding: 8px;
+            border-bottom: 1px solid #90caf9;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .option-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background-color: #1e88e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            width: 120px;
+            font-weight: bold;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back-button:hover {
+            background-color: #1565c0;
+        }
+                /* 🔥 Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+
+
+        }
+
+        .loading-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+
+            position: absolute;
+            top: 60mm;
+        }
+
+        /* 🔄 Spinner Animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #1e88e5;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 🔄 Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                Processing... Please wait.
+            </div>
+        </div>
+
+    <div class="container">
+        <h2>Who would you like to know?</h2>
+
+        <div class="options-container">
+            {% for option in options %}
+                <div class="option-item">
+                    <span>{{ option }}</span>
+                    <button class="select-button" >Choose</button>
+                </div>
+            {% endfor %}
+        </div>
+
+        <a class="back-button" onclick="window.location.href='/menu'">Back</a>
+    </div>
+    <script>
+    document.querySelectorAll('.select-button').forEach(button => {
+        button.addEventListener('click', function() {
+            let selectedOption = this.parentElement.querySelector('span').textContent;
+
+            // Show loading overlay
+            document.getElementById('loading-overlay').style.display = 'flex';
+            let goto = "{{ next_action | safe }}";
+            // Redirect to /author_sum with selected option
+            window.location.href = goto + "?choice=" + encodeURIComponent(selectedOption);
+        });
+    });
+</script>
+
+</body>
+</html>

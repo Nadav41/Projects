@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>Chatter- Messages per Week</title>
+    <style>
+        /* Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/Chatter background.jpg'); /* Replace with your image path */
+            background-size: cover; /* Cover the entire screen */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* No repeating */
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin-bottom: 1500px;
+            padding: 20px 20px 80px 20px;
+            }
+            @media screen and (max-width: 998px) {
+            body {
+                background-image: url('static/Chatter Mobile Background.png');
+            }
+        }
+
+        /* Card Container */
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 50px;
+            position: absolute;
+            top: 20mm;
+        }
+
+
+        /* Title Styling */
+        h2 {
+            margin-bottom: 20px;
+            margin-top: 10px;
+            font-size: 43px;
+            font-weight: bold;
+            color: #1565c0; /* Medium Blue */
+        }
+
+        /* Left-Aligned Text Below Title */
+        .report {
+            text-align: left;
+            font-size: 30px;
+            color: #333;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #bbdefb; /* Light Blue */
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .messages-per-person {
+            background: #bbdefb; /* Light Blue */
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 30px;
+            text-align: left;
+            color: #0d47a1; /* Dark Blue */
+            font-weight: bold;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+            margin-bottom: 25px; /* Increase spacing before the back button */
+            line-height: 1;
+        }
+
+        .top5-container {
+            background: #bbdefb; /* Light Blue */
+            padding: 15px;
+            border-radius: 0px;
+            font-size: 27px;
+            text-align: left;
+            color: #222222;
+            font-weight: bold;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px; /* Space before the back button */
+            direction: ltr;
+            unicode-bidi: embed;
+        }
+        .top5-container p {
+            margin: -3; /* Fix first line spacing issue */
+        }
+        .top5-item {
+            display: flex;
+            justify-content: flex-start; /* Align everything to the left */
+            align-items: center; /* Keep text vertically aligned */
+            padding: 3px 0;
+            border-bottom: 1px solid #90caf9;
+            gap: 5px; /* Reduce the gap between name and count */
+        }
+
+        .top5-item .name {
+            margin-top: 8px;
+            text-align: left;
+            flex-grow: 0; /* Prevents name from stretching */
+            white-space: nowrap; /* Prevents text from breaking into multiple lines */
+            color: #333;
+            font-weight: bold;
+        }
+
+        .top5-item .count {
+            text-align: left;
+            font-weight: bold;
+
+
+        }
+
+        .top5-item .count {
+            text-align: right;
+            color: #093476;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            min-width: 80px; /* Ensures numbers are aligned properly */
+            font-size: 28px;
+        }
+
+        .top5-item .count2 {
+            text-align: right;
+            color: #0d47a1;
+
+            margin-top: 15px;
+            margin-bottom: 10px;
+            min-width: 80px; /* Ensures numbers are aligned properly */
+            font-size: 22px;
+        }
+
+        .top5-item:last-child {
+            border-bottom: none;
+        }
+
+        .back-button {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background-color: #1e88e5; /* Vibrant Blue */
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            width: 120px;
+            font-weight: bold;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            top: 0; /* Reset */
+        }
+
+        .back-button:hover {
+            background-color: #1565c0; /* Darker Blue */
+        }
+        .Messages per person {
+            margin-bottom: 40px; /* Adds spacing below the container */
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Frequent Time Windows</h2>
+        <h1>When are they most active?</h1>
+
+
+        <div class="top5-container">
+            {% for line in result[0:] %}
+            <span class="name">{{ line[0] }}:</span>
+                <div class="top5-item">
+                    <span class="count">{{ line[1] }} -  </span>
+                    <span class="count2">{{ line[2] }} </span>
+                </div>
+            {% endfor %}
+        </div>
+
+        <a class="back-button" onclick="history.back()">Back</a>
+    </div>
+    <div style="height: 60px;"></div>
+</body>
+</html>

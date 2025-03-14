@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <title>Chatter- Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/Chatter background.jpg'); /* Replace with your image path */
+            background-size: cover; /* Cover the entire screen */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* No repeating */
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            margin-bottom: 50px;
+
+            padding: 20px;
+            padding-bottom: 50px;
+
+            text-align: center;
+        }
+        @media screen and (max-width: 998px) {
+            body {
+                background-image: url('static/Chatter Mobile Background.png');
+            }
+        }
+
+        .menu-box {
+            background: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+            padding: 12px 18px;
+            border-radius: 12px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Space between buttons */
+            width: 300px; /* Wider box */
+            min-height: 200px; /* Increased height */
+
+            position: absolute;
+            top: 37mm; /* Default position */
+            transform: translateY(20px); /* Start lower */
+            opacity: 0; /* Start hidden */
+
+            animation: fadeSlideUp 0.6s ease-out forwards; /* Apply animation */
+        }
+        h1.title {
+            color: #218a57; /* WhatsApp Green */
+            font-size: 46px;
+            font-weight: bold;
+            text-align: center;
+            position: absolute;
+            top: 10mm;
+        }
+        .back-button {
+            background-color: #0f6fc4;
+            position: absolute;
+            top: 210mm;
+            max-width: 115px;
+            margin-top: 10px;
+            transform: scale(1.05);
+
+            opacity: 0; /* Start hidden */
+            animation: fadeIn 0.6s ease-out forwards; /* Fade in */
+        }
+
+        h3 {
+            margin-top: -20px;
+            margin-bottom: -4px;
+            font-size: 20px;
+
+
+        }
+
+        h3.Disclaimer {
+            margin-top: 2px;
+            margin-bottom: 2px;
+            font-size: 15px;
+
+
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px); /* Start lower */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0); /* Move to final position */
+            }
+        }
+
+        /* Button Animation: Fade In Only */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .button {
+            background-color: #1e88e5;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 80%;
+            display: block;
+            margin-left: auto;  /* Center horizontally */
+            margin-right: auto;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #1565c0;
+        }
+
+        .back-button:hover {
+            background-color: #05569d;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">{{title}}</h1>
+    <div class="menu-box">
+        <h2>Select an Action</h2>
+        <h3>AI Features:</h3>
+        <a href="/sum_eng" class="button">Summarize Chat </a>
+        <a href="/arg_eng" class="button">Settle an Argument </a>
+        <a href="/author_sum" class="button">Know Your Friend </a>
+        <a href="/is_funny" class="button"> Is He Funny?</a>
+
+        <h3 class="Disclaimer">*Due to free usage, AI features can take from a second to 2 minutes per request.</h3>
+
+        <h3><br>Regular Features:</h3>
+        <a href="/week_count" class="button">Message Count Per Week</a>
+        <a href="/name_count" class="button">Messages per Author</a>
+        <a href="/word_count" class="button">Top Words per Author</a>
+        <a href="/time_windows" class="button">Favourite Time Windows</a>
+
+    </div>
+    <button class="button back-button" onclick="window.location.href='/'">Back</button>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>Chatter- Select Start & End Date</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/Chatter background.jpg'); /* Replace with your image path */
+            background-size: cover; /* Cover the entire screen */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* No repeating */
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        @media screen and (max-width: 998px) {
+            body {
+                background-image: url('static/Chatter Mobile Background.png');
+            }
+        }
+        .container {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            top: -45mm;
+            transform: scale(1.05)
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .input-container {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .button {
+            background-color: #1e88e5;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #1565c0;
+        }
+                /* 🔥 Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+
+
+        }
+
+        .loading-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+
+            position: absolute;
+            top: 60mm;
+        }
+
+        /* 🔄 Spinner Animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #1e88e5;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Select Start & End Date</h2>
+
+        <!-- ✅ Single Form (Fixed) -->
+        <form action="/process_dates" method="POST">
+
+            <!-- 🔥 Hidden field to pass next_action (sum_eng or arg_eng) -->
+            <input type="hidden" name="next_action" value="{{ next_action }}">
+
+            <!-- Start Date -->
+            <div class="input-container">
+                <label for="start_datetime">Start Date & Time:</label>
+                <input type="datetime-local" id="start_datetime" name="start_datetime" required>
+            </div>
+
+            <!-- End Date (Optional) -->
+            <div class="input-container">
+                <label for="end_datetime">End Date & Time (Optional):</label>
+                <input type="datetime-local" id="end_datetime" name="end_datetime">
+            </div>
+
+            <button type="submit" class="button">Submit</button>
+        </form>
+    </div>
+    <!-- 🔥 Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            Processing... Please wait.
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector("form").addEventListener("submit", function(event) {
+                var startDate = new Date(document.getElementById("start_datetime").value);
+                var endDateInput = document.getElementById("end_datetime").value;
+
+                if (endDateInput) { // Only check if End Date is filled
+                    var endDate = new Date(endDateInput);
+                    if (endDate < startDate) {
+                        alert("End date cannot be before start date!");
+                        event.preventDefault(); // Stop form submission
+                    }
+                }
+                // Show loading overlay when form is valid
+                document.getElementById("loading-overlay").style.display = "flex";
+            });
+        });
+    </script>
+
+</body>
+</html>

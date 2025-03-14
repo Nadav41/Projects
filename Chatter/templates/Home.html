@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>Chatter</title>
+    <style>
+        /* General Page Styling */
+        body {
+            background-image: url('/static/Chatter background.jpg'); /* Replace with your image path */
+            background-size: cover; /* Cover the entire screen */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* No repeating */
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        @media screen and (max-width: 998px) {
+            body {
+                background-image: url('static/Chatter Mobile Background.png');
+            }
+        }
+
+        /* Card Container */
+        .container {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            margin-top: 2px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            top: 42mm;
+            z-index: 1; /* Ensure it's above the loading screen */
+            transform: scale(1.15)
+        }
+
+        .container h2 {
+            margin-top: 2px;
+        }
+
+        .container h3 {
+            margin-top: 2px;
+        }
+
+        /* Info Container */
+        .info-container {
+            background: #ffffff;
+            padding: 18px;
+            padding-top: 5px;
+            border-radius: 10px;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+            max-width: 450px;
+            width: 100%;
+            text-align: left;
+            margin-top: 30px; /* Space between containers */
+            font-size: 16px;
+            line-height: 1.6;
+            position: absolute;
+            top: 130mm;
+            transform: scale(1.15)
+
+        }
+        h1.title {
+            color: #218a57; /* WhatsApp Green */
+            font-size: 49px;
+            font-weight: bold;
+            text-align: center;
+            position: absolute;
+            top: 10mm;
+        }
+        .info-container h3 {
+            margin-bottom: 0px; /* Reduce space below the title */
+            line-height: 0.6;
+        }
+        p.title {
+            font-size: 24px;
+            color: #1d8050;
+            font-weight: bold;
+            line-height: 1.4;
+            text-align: center;
+        }
+        p.title2 {
+            font-size: 20px;
+            color: #1d8050;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .info-container h3 {
+            font-size: 22px;
+            font-weight: 600;
+            padding-left: 8px;
+
+        }
+        .info-container p {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 0.7;
+
+        }
+
+        p.title {
+            font-size: 24px;
+            color: #1d8050;
+            font-weight: bold;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* Upload Box */
+        .upload-box {
+            background: #bbdefb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        input[type="file"] {
+            margin: 10px 0;
+        }
+
+        /* Button Styling */
+        .button {
+            display: inline-block;
+            background-color: #1e88e5;
+            color: white;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #1565c0;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent */
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 10; /* Ensure it appears above everything */
+        }
+
+        .loading-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+
+            position: relative;
+            top: -20mm;
+        }
+
+        /* Animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #1e88e5;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+    </style>
+    <script>
+        function showLoading() {
+            document.getElementById("loading-overlay").style.display = "flex"; // Show overlay
+        }
+    </script>
+</head>
+<body>
+    <h1 class="title">Chatter - Know your chat!</h1>
+
+    <div class="container">
+        <h2>WELCOME!</h2>
+        <h3>Please press a button:</h3>
+
+        <!-- ZIP File Upload Section -->
+        <div class="upload-box">
+            <h3>Upload a ZIP File</h3>
+            <form method="POST" action="/" enctype="multipart/form-data" onsubmit="showLoading()">
+                <input type="file" id="zipInput" name="zip_file" required>
+                <br>
+                <button class="button" type="submit">Upload ZIP</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            Processing your chat... Please wait.
+        </div>
+    </div>
+
+<!-- New Info Container Below -->
+    <div class="info-container">
+        <p class="title">Upload a WhatsApp ZIP export file and get AI-powered insights!</p>
+        <h3><br>Features:</h3>
+        <p>• Analyse your chat and friends with AI</p>
+        <p>• Who sends the most messages?</p>
+        <p>• What are your favourite words?</p>
+        <p>• When should you text her?</p>
+        <p>• Discover fascinating data about your chat and friends!</p>
+
+    </div>
+
+</body>
+</html>
