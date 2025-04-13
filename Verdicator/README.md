@@ -18,6 +18,7 @@ Verdicator scrapes verdicts and ratings from multiple gaming websites, builds a 
  - Python & Pandas for data processing and ETL
  - Selenium & BeautifulSoup for web scraping
  - customtkinter for GUI
+ - NLP
  - SQLite for local database
  
  ## Usage:
