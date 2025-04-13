@@ -1,4 +1,3 @@
-![Home Screen](Assets/Verdicator Icon.png)
 # Verdicator
 Verdicator scrapes verdicts and ratings from multiple gaming websites, builds a local database, and visualizes the data in a clean GUI.
 
