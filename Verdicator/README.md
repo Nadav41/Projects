@@ -20,7 +20,8 @@ Verdicator scrapes verdicts and ratings from multiple gaming websites, builds a 
  
  ## Usage:
  ### Check Out the Database:
- You can take a look at the gathered data on Kaggle:
+ Open the link: https://inloop.github.io/sqlite-viewer/
+ Upload "Video_Games.db".
  
  ### Run the app!
  Run "Verdicator.py" and enjoy.
