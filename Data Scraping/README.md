@@ -27,4 +27,5 @@ Verdicator scrapes verdicts and ratings from multiple gaming websites, builds a 
  
  
  ## Images:
- ![Home Screen](Screenshots/Home.png)
+ ![Rating](Assets/Screenshot3.png)
+ ![Home Screen](Assets/Screenshot2.png)
