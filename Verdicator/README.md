@@ -22,10 +22,8 @@ Verdicator scrapes verdicts and ratings from multiple gaming websites, builds a 
  - SQLite for local database
  
  ## Usage:
- ### Check Out the Database:
- Open the link: https://inloop.github.io/sqlite-viewer/
- 
- Upload "Video_Games.db".
+ ### Check Out the Database and Analyzations:
+  - Open the Google Sheets File: [Click Me!](https://docs.google.com/spreadsheets/d/1sAq6FAdMsJRqQo9VkkjWLPuCRXlZLemuqiwAgIr5z4Q/edit?usp=sharing)
  
  ### Run the app!
  Run "Verdicator.py" and enjoy.
