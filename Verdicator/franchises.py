@@ -1,5 +1,6 @@
 import pandas as pd
 import sqlite3
+from collections import Counter
 
 class TreeNode:
     def __init__(self, value):
@@ -33,11 +34,22 @@ class TreeNode:
         """ Searches for existing titles only.
             retrieves the last relevant franchise name"""
         words = title.split()
+        found = False
+        for child in self.children.keys():
+            if words[0] == child:
+                found = True
+        if not found:
+            return title,[title]
         tree = self.children[words[0].replace(":","").replace(",","").replace("/","").replace("-","")]
         prev = tree
         last_count = tree.all_titles()
+        if title.startswith("Dead"):
+            pass
         for i in range(5):
             if i + 1 == len(words) or words[i+1].isnumeric():
+                for j in last_count:
+                    if i <= 3 and len(j) > 5:
+                        return tree.fullname, [title]
                 return prev.fullname,last_count
             new_count = tree.all_titles()
             if len(words) > 3 and i > 1 and len(last_count) > len(new_count) and words[tree.depth] not in tree.get_prefixes():
@@ -50,8 +62,25 @@ class TreeNode:
             tree = tree.children[words[i+1].replace(":","").replace(",","").replace("/","").replace("-","")]
         return tree.fullname, last_count
 
-    def search_destroy(self,lst):
-        wo
+    def search_destroy(self, lst):
+        franchises = {}
+        for i in lst:
+            try:
+                to_remove = list(self.search(i))
+                for title in to_remove[1]:
+                    lst.remove(title)
+                if len(to_remove[1]) > 30:
+                    last_words = []
+                    for game in to_remove[1]:
+                        last_word = game.split()[len(to_remove[0].split()) - 1]
+                        last_words.append(last_word)
+                    to_remove[0] = " ".join(to_remove[0].split()[0:len(to_remove[0].split()) - 1]) + " "+ Counter(last_words).most_common(1)[0][0]
+                    franchises[to_remove[0]] = to_remove[1]
+            except ValueError as e:
+                print(f"{e}: {title})")
+
+        return franchises
+
     def all_titles(self, lst=None):
         if lst is None:
             lst = []
@@ -92,6 +121,11 @@ print(tree.search("The Sims: Bustin' Out")[0])                    # The Sims
 # print(tree.search("Call of Duty Modern Warfare"))  # → should return all Call of Duty titles
 # print(tree.search("Grand Theft Auto V"))           # → GTA titles
 # print(tree.search("Assassin's Creed"))
+f = tree.search_destroy(titles)
+print(f)
+
+
+
 
 # toremove = []
 # i=0
