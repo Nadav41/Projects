@@ -157,8 +157,7 @@ def sum_text(limit):
         i+=1
         print(f'New verdict: {summed_txt} type: {type(summed_txt)}')
         df.at[index,'Verdict_Sum']= summed_txt
-        # df.to_sql('Video_Games', conn, if_exists='replace', index=False)
-        # print('saved')
+
 
 
 if not os.path.exists('Video_Games.db'):

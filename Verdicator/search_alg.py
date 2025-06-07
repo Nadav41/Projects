@@ -101,7 +101,7 @@ def catch_verdict(product, driver, site, site_func):
         title = res.text
         lowered_title = title.lower().replace(':','').replace("'",'').replace(',','').replace('!','').replace('?','')
         if 'review' in lowered_title and 'reviews' not in lowered_title and lowered_title.startswith(product.lower().replace(':','').replace(',','').replace("'",'').replace('!','').replace('?','')) and abs((title.lower().index('review')) - len(product)) <= 5: #considers lengths of 'Review - IGN'
-            if lowered_title[len(product) + 1].isdigit(): #Avoids searching for prodeccesors
+            if lowered_title[len(product) + 1].isdigit() or "i" in lowered_title[len(product) + 1:len(product) + 3]: #Avoids searching for predeccesors
                 continue
             verdict = site_func(res.get_attribute("href"))
             # verdict = get_score(results[0].get_attribute("href"),driver)
