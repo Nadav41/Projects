@@ -11,6 +11,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 import re
 from summarizer import sum
+from franchises import TitleTree
 
 def create():
     api_token = {"username": "nadavzvulun", "key": "53fcf81243a27d02561d91d8b8101f26"}
@@ -158,6 +159,9 @@ def sum_text(limit):
         print(f'New verdict: {summed_txt} type: {type(summed_txt)}')
         df.at[index,'Verdict_Sum']= summed_txt
 
+conn = sqlite3.connect('Video_Games.db')
+df = pd.read_sql("SELECT * FROM Video_Games", conn)
+tree = TitleTree("*",df["name"])
 
 
 if not os.path.exists('Video_Games.db'):

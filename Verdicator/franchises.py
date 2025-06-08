@@ -2,13 +2,17 @@ import pandas as pd
 import sqlite3
 from collections import Counter
 
-class TreeNode:
-    def __init__(self, value):
+class TitleTree:
+    def __init__(self, value, name_list = None):
         self.value = value
         self.titles = []
         self.children = {}
         self.depth = 0 #Initial height
         self.fullname = ""
+        if name_list:
+            for title in name_list:
+                self.add_child(title)
+
 
     def add_child(self, new):
         words = new.split()
@@ -17,7 +21,7 @@ class TreeNode:
             return
         word = new.split()[self.depth].replace(":","").replace(",","").replace("/","").replace("-","")
         if word not in self.children:
-            new_tree = TreeNode(word)
+            new_tree = TitleTree(word)
             self.children[word] = new_tree
             new_tree.depth = self.depth + 1
             new_tree.fullname = (self.fullname+" "+ word).strip()
@@ -69,7 +73,7 @@ class TreeNode:
                 to_remove = list(self.search(i))
                 for title in to_remove[1]:
                     lst.remove(title)
-                if len(to_remove[1]) > 30:
+                if len(to_remove[1]) > 10:
                     last_words = []
                     for game in to_remove[1]:
                         last_word = game.split()[len(to_remove[0].split()) - 1]
@@ -101,18 +105,18 @@ for title in df["name"]:
 # wordict = {}
 titles = list(df["name"])
 titles2 = ["Call of Duty","Call: of Duty 2", "Call of- Duty king", "Call of Juarez"]
-tree = TreeNode("*")
-for title in titles2:
-    tree.add_child(title)
+tree = TitleTree("*", titles)
+# for title in titles2:
+#     tree.add_child(title)
 # print(tree.all_titles())
 
 # tree2 = tree.search("Call: of Duty 2")
 # print(tree2)
 
-
-tree = TreeNode("*")
-for title in titles:
-    tree.add_child(title)
+#
+# tree = TreeNode("*")
+# for title in titles:
+#     tree.add_child(title)
 print(tree.search("Final Fantasy Fables: Chocobo's Dungeon")[0])  # Final Fantasy
 print(tree.search("Call of Duty: Black Ops 3")[0])                # Call of Duty
 print(tree.search("Assassin's Creed Revelations")[0])             # Assassin's Creed
