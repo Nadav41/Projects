@@ -26,12 +26,14 @@ Verdicator scrapes verdicts and ratings from multiple gaming websites, builds a 
   - Open the Google Sheets File: [Click Me!](https://docs.google.com/spreadsheets/d/1sAq6FAdMsJRqQo9VkkjWLPuCRXlZLemuqiwAgIr5z4Q/edit?usp=sharing)
  
  ### Run the app!
- Run "Verdicator.py" and enjoy.
- 
- 
+ #### Options:
+ - Run "Verdicator.py" and enjoy.
+ - [Download](https://www.dropbox.com/scl/fi/3nxajug4bkhafd8eyrs3z/Verdicator.zip?rlkey=zx7mb0kyf72dbw06ofjk2q5fx&st=mob6fpyh&dl=0) Verdicator's standalone app!  (Mac only).
  ## Images:
  ![Rating](Assets/Screenshot3.png)
  ![Home Screen](Assets/Screenshot2.png)
+ ![Analysis](Assets/DataAnalysis.png)
+ ![Top Games](Assets/ExcelTopGames.png)
 
 
  
