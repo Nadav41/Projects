@@ -66,14 +66,14 @@ class TitleTree:
             tree = tree.children[words[i+1].replace(":","").replace(",","").replace("/","").replace("-","")]
         return tree.fullname, last_count
 
-    def search_destroy(self, lst):
+    def search_destroy(self, lst,threshold):
         franchises = {}
         for i in lst:
             try:
                 to_remove = list(self.search(i))
                 for title in to_remove[1]:
                     lst.remove(title)
-                if len(to_remove[1]) > 10:
+                if len(to_remove[1]) > threshold:
                     last_words = []
                     for game in to_remove[1]:
                         last_word = game.split()[len(to_remove[0].split()) - 1]
@@ -81,7 +81,8 @@ class TitleTree:
                     to_remove[0] = " ".join(to_remove[0].split()[0:len(to_remove[0].split()) - 1]) + " "+ Counter(last_words).most_common(1)[0][0]
                     franchises[to_remove[0]] = to_remove[1]
             except ValueError as e:
-                print(f"{e}: {title})")
+                # print(f"{e}: {title})")
+                pass
 
         return franchises
 
@@ -94,39 +95,39 @@ class TitleTree:
         return lst
 
 
-conn = sqlite3.connect('Video_Games.db')
-df = pd.read_sql("SELECT * FROM Video_Games", conn)
-words = {}
-
-for title in df["name"]:
-    for word in title.split():
-        words[word] = words.get(word,0) + 1
-
-# wordict = {}
-titles = list(df["name"])
-titles2 = ["Call of Duty","Call: of Duty 2", "Call of- Duty king", "Call of Juarez"]
-tree = TitleTree("*", titles)
-# for title in titles2:
-#     tree.add_child(title)
-# print(tree.all_titles())
-
-# tree2 = tree.search("Call: of Duty 2")
-# print(tree2)
-
+# conn = sqlite3.connect('Video_Games.db')
+# df = pd.read_sql("SELECT * FROM Video_Games", conn)
+# words = {}
 #
-# tree = TreeNode("*")
-# for title in titles:
-#     tree.add_child(title)
-print(tree.search("Final Fantasy Fables: Chocobo's Dungeon")[0])  # Final Fantasy
-print(tree.search("Call of Duty: Black Ops 3")[0])                # Call of Duty
-print(tree.search("Assassin's Creed Revelations")[0])             # Assassin's Creed
-print(tree.search("LEGO Star Wars II: The Original Trilogy")[0])  # LEGO Star Wars
-print(tree.search("The Sims: Bustin' Out")[0])                    # The Sims
-# print(tree.search("Call of Duty Modern Warfare"))  # → should return all Call of Duty titles
-# print(tree.search("Grand Theft Auto V"))           # → GTA titles
-# print(tree.search("Assassin's Creed"))
-f = tree.search_destroy(titles)
-print(f)
+# for title in df["name"]:
+#     for word in title.split():
+#         words[word] = words.get(word,0) + 1
+#
+# # wordict = {}
+# titles = list(df["name"])
+# titles2 = ["Call of Duty","Call: of Duty 2", "Call of- Duty king", "Call of Juarez"]
+# tree = TitleTree("*", titles)
+# # for title in titles2:
+# #     tree.add_child(title)
+# # print(tree.all_titles())
+#
+# # tree2 = tree.search("Call: of Duty 2")
+# # print(tree2)
+#
+# #
+# # tree = TreeNode("*")
+# # for title in titles:
+# #     tree.add_child(title)
+# print(tree.search("Final Fantasy Fables: Chocobo's Dungeon")[0])  # Final Fantasy
+# print(tree.search("Call of Duty: Black Ops 3")[0])                # Call of Duty
+# print(tree.search("Assassin's Creed Revelations")[0])             # Assassin's Creed
+# print(tree.search("LEGO Star Wars II: The Original Trilogy")[0])  # LEGO Star Wars
+# print(tree.search("The Sims: Bustin' Out")[0])                    # The Sims
+# # print(tree.search("Call of Duty Modern Warfare"))  # → should return all Call of Duty titles
+# # print(tree.search("Grand Theft Auto V"))           # → GTA titles
+# # print(tree.search("Assassin's Creed"))
+# f = tree.search_destroy(titles)
+# print(f)
 
 
 

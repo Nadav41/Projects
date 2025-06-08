@@ -159,10 +159,23 @@ def sum_text(limit):
         print(f'New verdict: {summed_txt} type: {type(summed_txt)}')
         df.at[index,'Verdict_Sum']= summed_txt
 
-conn = sqlite3.connect('Video_Games.db')
-df = pd.read_sql("SELECT * FROM Video_Games", conn)
-tree = TitleTree("*",df["name"])
+def get_franchises():
+    conn = sqlite3.connect('Video_Games.db')
+    df = pd.read_sql("SELECT * FROM Video_Games", conn)
+    tree = TitleTree("*",list(df["name"]))
+    f = tree.search_destroy(list(df["name"]),5)
+    for i in f.items():
+        print("--------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+        print(f"{i[0]}: - {i[1]}")
+    df2 = pd.DataFrame(columns=["franchise","name"])
+    for key, lst in f.items():
+        for title in lst:
+            df2.loc[len(df2)] = [key.replace(":","").replace(",","").replace("/","").replace("-",""),title]
+    print(df2)
+    df2 = df2.merge(df, on="name", how="left")
+    df2.to_csv('franchises.csv', index=False)
 
+get_franchises()
 
 if not os.path.exists('Video_Games.db'):
     create()
