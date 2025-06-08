@@ -4,3 +4,8 @@
 - **More projects coming soon...** 
 
 Each project has its **own folder** and **dedicated README**.
+## Verdicator
+![Rating](Verdicator/Assets/Screenshot2.png)
+
+## Chatter
+![Menu](Chatter/Screenshots/Screenshot6.png)
