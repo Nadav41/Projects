@@ -28,8 +28,8 @@ Verdicator scrapes verdicts and ratings from multiple gaming websites, builds a 
  ### Run the app!
  #### Options:
  - Run "Verdicator.py" and enjoy.
- - From this repository folder, enter "dist" and run **"Verdicator.app"** (Mac only).
- 
+ - [Download]( https://www.dropbox.com/scl/fo/jnztudxi32rsvlcbqyt8t/AATtjvghPrr2R7CiNIze8tM?rlkey=j4v14i9wlagpkadr6j4rv3erw&st=axqb9mj4&dl=0
+) Verdicator's standalone app!  (Mac only).
  ## Images:
  ![Rating](Assets/Screenshot3.png)
  ![Home Screen](Assets/Screenshot2.png)
