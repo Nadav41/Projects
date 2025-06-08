@@ -1,3 +1,0 @@
-([('Verdicator',
-   '/Users/nadav/PycharmProjects/Projects/Verdicator/dist/Verdicator',
-   'EXECUTABLE')],)

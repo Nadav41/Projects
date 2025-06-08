@@ -175,7 +175,6 @@ def get_franchises():
     df2 = df2.merge(df, on="name", how="left")
     df2.to_csv('franchises.csv', index=False)
 
-get_franchises()
 
 if not os.path.exists('Video_Games.db'):
     create()
